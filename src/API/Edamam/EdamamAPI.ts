@@ -18,7 +18,7 @@ class EdamamAPI {
 
   async getRecipes(query: string) {
     return await this._axios(query).then(
-      (res: AxiosResponse<EdamamResponse>) => res.data.hits
+      (res: AxiosResponse<EdamamResponse>) => res.data
     );
   }
 }

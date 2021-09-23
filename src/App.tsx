@@ -1,35 +1,28 @@
-import React, { useEffect } from 'react';
-import logo from './logo.svg';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 import EdamamAPI from './API/Edamam/EdamamAPI';
+import { Card } from './Component/Card/Card';
+import { Link, Recipe } from './API/Edamam/RecipesModel';
 
 function App() {
 
+  const [isloading, setIsloading] = useState<Boolean>(true);
+  const [recipes, setRecipes] = useState<{ recipe: Recipe; _links: Link; }[]>();
+
   useEffect(() => {
     (async () => {
-      let test = await new EdamamAPI().getRecipes("chicken");
-      console.log(test);
-    })()
+      const res = await new EdamamAPI().getRecipes("chicken");
+      setRecipes(res.hits);
+      setIsloading(false);
+    })();
 
-  }, [])
+  }, []);
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    isloading ? <div> Loading...</div> :
+      <div className="app">
+        {recipes?.map((item, i) => <Card key={i} {...item.recipe} />)}
+      </div>
   );
 }
 

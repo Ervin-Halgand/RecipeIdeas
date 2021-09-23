@@ -1,6 +1,6 @@
 export interface EdamamResponse {
   count: DoubleRange;
-  hits: { recipe: Recipe[]; _links: Link };
+  hits: { recipe: Recipe; _links: Link }[];
   to: DoubleRange;
   _links: {
     next: {
@@ -18,7 +18,7 @@ export interface Link {
 }
 
 export interface Recipe {
-  calories: DoubleRange;
+  calories: number;
   cautions: string[];
   cuisineType: string[];
   dietLabels: string[];
@@ -63,6 +63,10 @@ export interface Ingredients {
   weight: DoubleRange;
 }
 
-export interface MealTypes {
-  meals: ["Breakfast", "Lunch", "Dinner", "Snack", "Teatime"];
+export enum MealTypes {
+  Breakfast = "Breakfast",
+  Lunch = "Lunch",
+  Dinner = "Dinner",
+  Snack = "Snack",
+  Teatime = "Teatime",
 }
