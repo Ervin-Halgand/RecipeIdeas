@@ -3,6 +3,7 @@ import './App.css';
 import EdamamAPI from './API/Edamam/EdamamAPI';
 import { Card } from './Component/Card/Card';
 import { Link, Recipe } from './API/Edamam/RecipesModel';
+import { SearchBar } from './Component/SearchBar/SearchBar';
 
 function App() {
 
@@ -21,7 +22,10 @@ function App() {
   return (
     isloading ? <div> Loading...</div> :
       <div className="app">
-        {recipes?.map((item, i) => <Card key={i} {...item.recipe} />)}
+        <SearchBar />
+        <div className="app2">
+          {recipes?.map((item, i) => <Card key={i} {...item.recipe} />)}
+        </div>
       </div>
   );
 }

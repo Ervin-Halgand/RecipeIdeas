@@ -1,15 +1,22 @@
 .app {
+  color: rgb(69, 60, 99);
+  background: rgb(249, 249, 251);
+  padding: 80px;
+  font-family: 'Baloo 2', cursive;
+}
+
+.app2 {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   gap: 10px 10px;
-  color: rgb(69, 60, 99);
-  background-image: linear-gradient(to right, #ffecd2 0%, #fcb69f 100%);
-  padding: 80px;
 }
 
 button {
   border: none;
 }
+
+input { border-style: none; background: transparent; outline: none; }
+
 
 button:hover {
   cursor: pointer;

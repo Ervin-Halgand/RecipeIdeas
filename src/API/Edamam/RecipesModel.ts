@@ -33,12 +33,16 @@ export interface Recipe {
   shareAs: string;
   source: string;
   totalDaily: Object;
-  totalNutrients: Object;
   totalTime: DoubleRange;
   totalWeight: DoubleRange;
   uri: string;
   url: string;
   yield: DoubleRange;
+  totalNutrients: {
+    FAT: { label: string; quantity: number; unit: string };
+    PROCNT: { label: string; quantity: number; unit: string };
+    CHOCDF: { label: string; quantity: number; unit: string };
+  };
 }
 
 export interface Digest {
@@ -69,4 +73,11 @@ export enum MealTypes {
   Dinner = "Dinner",
   Snack = "Snack",
   Teatime = "Teatime",
+}
+
+export enum Diet {
+  highProtein = "high-protein",
+  lowCarb = "low-carb",
+  lowFat = "low-fat",
+  lowSodium = "low-sodium"
 }
