@@ -76,8 +76,31 @@ export enum MealTypes {
 }
 
 export enum Diet {
+  balanced = "balanced",
+  highFiber = "high-fiber",
   highProtein = "high-protein",
   lowCarb = "low-carb",
   lowFat = "low-fat",
-  lowSodium = "low-sodium"
+  lowSodium = "low-sodium",
+}
+
+export enum CuisineType {
+  American = "American",
+  Asian = "Asian",
+  British = "British",
+  Caribbean = "Caribbean",
+  CentralEurope = "Central Europe",
+  Chinese = "Chinese",
+  EasternEurope = "Eastern Europe",
+  French = "French",
+  Indian = "Indian",
+  Italian = "Italian",
+  Japanese = "Japanese",
+  Kosher = "Kosher",
+  Mediterranean = "Mediterranean",
+  Mexican = "Mexican",
+  MiddleEastern = "Middle Eastern",
+  Nordic = "Nordic",
+  SouthAmerican = "South American",
+  SouthEastAsian = "South East Asian",
 }

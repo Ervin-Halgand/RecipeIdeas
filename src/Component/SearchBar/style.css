@@ -1,0 +1,15 @@
+.css-1kty9di-MuiFormLabel-root-MuiInputLabel-root.Mui-focused {
+    color: #ff9600 !important;
+}
+
+.css-1480iag-MuiInputBase-root-MuiInput-root:hover:not(.Mui-disabled):before, .css-1480iag-MuiInputBase-root-MuiInput-root:after {
+    border-bottom: 2px solid #ff9600 !important;
+}
+
+.css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+    border-color: #ff9600 !important;
+}
+
+.css-187mznn-MuiSlider-root {
+    color: #ff9600 !important;
+}

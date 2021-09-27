@@ -10,8 +10,8 @@ import playImg from '../../Assets/Image/play.png'
 
 export const Card: FunctionComponent<Recipe> = (recipe: Recipe) => {
     const foodItems = recipe.ingredients.map((ingredient, i) => {
-        if (i > 2) return null;
-        if (i > 1)
+        if (i > 5) return null;
+        if (i > 4)
             return (<CardWrapperIngredientsItem key={i} style={{ padding: "2px 0px" }}>
                 <CardWrapperIngredientsItemName>
                     <span style={{ color: "#FB9400", fontWeight: 800, fontSize: "16px" }}>{recipe.ingredients.length - i}+ More</span>
@@ -72,7 +72,7 @@ export const Card: FunctionComponent<Recipe> = (recipe: Recipe) => {
             <CardWrapperMoreHandler>
                 <a style={{ textDecoration: "none" }} href={recipe.url} target="_blank" rel="noreferrer"><CardWrapperMoreButton>
                     <CardWrapperMoreHandlerImg src={playImg} alt="play" />
-                    Watch more</CardWrapperMoreButton></a>
+                    Let's cook</CardWrapperMoreButton></a>
                 <CardWrapperMoreTime>
                     <CardWrapperMoreImg src={alarmClockImg} /> {recipe.totalTime} mins
                 </CardWrapperMoreTime>
@@ -220,10 +220,11 @@ width: 100%;
 `
 
 const CardWrapperHeaderTitle = styled.h2`
-font-size: 24px;
+font-size: 22px;
 font-weight: 700;
 `
 
 const CardWrapperHeaderCalories = styled.div`
 color: #a7a7a7;
+margin-top: auto;
 `

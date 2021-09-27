@@ -3,6 +3,7 @@
   background: rgb(249, 249, 251);
   padding: 80px;
   font-family: 'Baloo 2', cursive;
+  min-height: 100vh;
 }
 
 .app2 {

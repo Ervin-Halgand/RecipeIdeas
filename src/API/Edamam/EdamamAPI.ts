@@ -1,6 +1,6 @@
 import axios, { AxiosInstance, AxiosResponse } from "axios";
 
-import { EdamamResponse } from "./RecipesModel";
+import { CuisineType, Diet, EdamamResponse, MealTypes } from "./RecipesModel";
 
 class EdamamAPI {
   private _axios: AxiosInstance;
@@ -16,10 +16,31 @@ class EdamamAPI {
     });
   }
 
-  async getRecipes(query: string) {
-    return await this._axios(query).then(
-      (res: AxiosResponse<EdamamResponse>) => res.data
-    );
+  async getRecipes(
+    query: string,
+    diet?: Diet,
+    cuisineType?: CuisineType,
+    mealType?: MealTypes
+  ) {
+    return await this._axios(
+      `${query}${
+        diet !== undefined && diet?.length > 0
+          ? `&diet=${diet.replaceAll(" ", "%20")}`
+          : ""
+      }${
+        cuisineType !== undefined && cuisineType?.length > 0
+          ? `&cuisineType=${cuisineType.replaceAll(" ", "%20")}`
+          : ""
+      }${
+        mealType !== undefined && mealType?.length > 0
+          ? `&mealType=${mealType.replaceAll(" ", "%20")}`
+          : ""
+      }`
+    ).then((res: AxiosResponse<EdamamResponse>) => res.data);
+  }
+
+  async getNextPageOfRecipes(url: string) {
+    return axios.get(url).then((res: AxiosResponse<EdamamResponse>) => res.data);
   }
 }
 
