@@ -5,6 +5,11 @@ import { Card } from './Component/Card/Card';
 import { CuisineType, Diet, Link, MealTypes, Recipe } from './API/Edamam/RecipesModel';
 import { SearchBar } from './Component/SearchBar/SearchBar';
 import { LoadingButton, SeeMoreHandler } from './Component/Button/LoadingButton'
+import { NoResult } from './Component/SearchBar/NoResult/NoResult';
+import { CardSkeletonLoader } from './Component/Card/CardSkeletonLoader/CardSkeletonLader';
+import { Header } from './Component/Header/Header';
+import { Footer } from './Component/Footer/Footer';
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
 const App: FunctionComponent = () => {
 
@@ -13,6 +18,12 @@ const App: FunctionComponent = () => {
   const [isNextPageLoading, setIsNextPageLoading] = useState<Boolean>(false);
   const [nextPageUrl, setNextPageUrl] = useState<string>("");
   const [recipes, setRecipes] = useState<{ recipe: Recipe; _links: Link; }[]>([]);
+  let skeletonLoaduingCards = () => {
+    let list = [];
+    for (let i = 0; i < 12; i++)
+      list.push(<CardSkeletonLoader key={i}></CardSkeletonLoader>)
+    return (list)
+  }
 
   useEffect(() => {
     (async () => {
@@ -51,15 +62,25 @@ const App: FunctionComponent = () => {
 
   return (
 
-    <div className="app">
-      <SearchBar fetchWithArgs={fetchWithArgs} />
-      {isloading ? <div> Loading...</div> :
-        <div className="app2">
-          {recipes?.map((item, i) => <Card key={i} {...item.recipe} />)}
-          {(!isloading && recipes?.length === 0) && <div>No result</div>}
-        </div>}
-      {!isloading &&<SeeMoreHandler>{nextPageUrl.length > 0 && <LoadingButton isLoading={isNextPageLoading} onClick={loadNextpage}>See More</LoadingButton>}</SeeMoreHandler>}
-    </div>
+    <main>
+      <Header />
+      <div className="app">
+        <SearchBar fetchWithArgs={fetchWithArgs} />
+        <div className="grid2">
+          {isloading && skeletonLoaduingCards()}
+        </div>
+        <div className="grid">
+          <TransitionGroup>
+            {!isloading && recipes?.map((item, i) => <CSSTransition key={i} classNames="example" timeout={{ enter: 500, exit: 100 }}>
+              <Card {...item.recipe} /></CSSTransition>)
+            }
+          </TransitionGroup>
+        </div>
+      </div >
+      {(!isloading && recipes?.length === 0) && <NoResult />}
+      {!isloading && <SeeMoreHandler>{nextPageUrl.length > 0 && <LoadingButton isLoading={isNextPageLoading} onClick={loadNextpage}>See More</LoadingButton>}</SeeMoreHandler>}
+      <Footer />
+    </main >
   );
 }
 

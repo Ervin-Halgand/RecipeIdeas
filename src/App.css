@@ -1,23 +1,72 @@
-.app {
+body {
   color: rgb(69, 60, 99);
   background: rgb(249, 249, 251);
-  padding: 80px;
   font-family: 'Baloo 2', cursive;
   min-height: 100vh;
 }
 
-.app2 {
+.app {
+  padding: 80px;
+}
+
+.grid2 {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   gap: 10px 10px;
+}
+
+.grid>div:first-child {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 10px 10px;
+}
+
+@media screen and (max-width: 1875px) {
+  .grid>div:first-child, .grid2 {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+@media screen and (max-width: 1450px) {
+  .grid>div:first-child, .grid2 {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media screen and (max-width: 954px) {
+  .grid>div:first-child, .grid2 {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media screen and (max-width: 666px) {
+  .app {
+    padding: 20px 10px;
+  }
+}
+
+@media screen and (max-width: 666px) {
+  .css-1cwcc3f-MuiFormControl-root {
+    margin: 4px !important;
+    flex: 1;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .css-1cwcc3f-MuiFormControl-root {
+    min-width: 125px !important;
+  }
 }
 
 button {
   border: none;
 }
 
-input { border-style: none; background: transparent; outline: none; }
-
+input {
+  border-style: none;
+  background: transparent;
+  outline: none;
+}
 
 button:hover {
   cursor: pointer;
@@ -27,4 +76,22 @@ button:hover {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+.example-enter {
+  opacity: 0.01;
+}
+
+.example-enter.example-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+
+.example-exit {
+  opacity: 1;
+}
+
+.example-exit.example-exit-active {
+  opacity: 0.01;
+  transition: opacity 300ms ease-in;
 }

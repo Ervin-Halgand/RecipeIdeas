@@ -4,12 +4,12 @@ import searchImg from "../../Assets/Image/loupe.png"
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import FormControl from '@mui/material/FormControl';
-import Input from '@mui/material/Input';
 import FormHelperText from '@mui/material/FormHelperText';
 import InputLabel from '@mui/material/InputLabel';
 import InputAdornment from '@mui/material/InputAdornment';
 import { CuisineType, Diet, MealTypes } from "../../API/Edamam/RecipesModel";
 import './style.css'
+import { OutlinedInput } from "@mui/material";
 
 
 export const SearchBar: FunctionComponent<any> = ({ fetchWithArgs }) => {
@@ -32,106 +32,62 @@ export const SearchBar: FunctionComponent<any> = ({ fetchWithArgs }) => {
 
     const validate = (): void => {
         if (input.length === 0) {
-            setInputError("Please type food");
+            setInputError("Type some food");
             return;
         }
         setInputError("");
         fetchWithArgs(input, argument.Diet, argument.CuisineType, argument.MealTypes);
     }
     const loopEnum = (enumInterface: any) => {
-
         let listOfMeals: Array<any> = [];
-        for (let meal in enumInterface) {
+        for (let meal in enumInterface)
             listOfMeals.push(<MenuItem key={meal} value={enumInterface[meal]}>{enumInterface[meal].replaceAll('-', " ")}</MenuItem>)
-        }
         return listOfMeals;
     }
 
     return (
         <SearchBarHandler>
             <SearchBarInputHandler>
-                <FormControl error={inputError.length > 0} variant="outlined" fullWidth>
-                    <InputLabel
-                        htmlFor="food">Food</InputLabel>
-                    <Input endAdornment={<InputAdornment position="end"><SearchBarButton onClick={() => validate()}>
+                <FormControl error={inputError.length > 0} fullWidth sx={{
+                    "& .MuiInput-underline:hover:not(.Mui-disabled):before": {
+                        borderColor: "red"
+                    }
+                }}>
+                    <InputLabel htmlFor="food">Food</InputLabel>
+                    <OutlinedInput label="Food" id="food" endAdornment={<InputAdornment position="end"><SearchBarButton onClick={() => validate()}>
                         <SearchBarButtonImg src={searchImg} alt="search" />
                     </SearchBarButton></InputAdornment>}
                         value={input}
                         onChange={(e) => setInput(e.target.value)} onKeyUp={(e) => e.key === "Enter" && validate()} />
                     <FormHelperText id="component-error-text">{inputError}</FormHelperText>
                 </FormControl>
+                <SearchBarFilterHandler>
+                    {
+                        [{ name: "Meal types", id: "MealTypes", value: argument.MealTypes, type: MealTypes },
+                        { name: "Diet", id: "Diet", value: argument.Diet, type: Diet },
+                        { name: "Cuisine Type", id: "CuisineType", value: argument.CuisineType, type: CuisineType },].map((item, i) =>
+                            <FormControl sx={{ m: 1, minWidth: 140 }} key={i} size="small">
+                                <InputLabel id={item.id}>{item.name}</InputLabel>
+                                <Select
+                                    labelId={item.id}
+                                    id={item.id}
+                                    value={item.value}
+                                    label={item.name}
+                                    onChange={handleChange}
+                                    MenuProps={{ PaperProps: { style: { maxHeight: 200 } } }} >
+                                    <MenuItem value="">
+                                        <em>None</em>
+                                    </MenuItem>
+                                    {loopEnum(item.type)}
+                                </Select>
+                            </FormControl>
+                        )
+                    }
+                    <SearchBarFilterClearAll onClick={() => { setArgument({ MealTypes: "", Diet: "", CuisineType: "" }); setInput(""); }}>
+                        Clear all
+                    </SearchBarFilterClearAll>
+                </SearchBarFilterHandler>
             </SearchBarInputHandler>
-            <SearchBarFilterHandler>
-                <FormControl sx={{ m: 1, minWidth: 130 }}>
-                    <InputLabel id="MealTypes">Meal types</InputLabel>
-                    <Select
-                        labelId="MealTypes"
-                        id="MealTypes"
-                        value={argument.MealTypes}
-                        label="Mealtypes"
-                        onChange={handleChange}
-                        MenuProps={{
-                            PaperProps: {
-                                style: {
-                                    maxHeight: 200,
-                                },
-                            }
-                        }}
-                    >
-                        <MenuItem value="">
-                            <em>None</em>
-                        </MenuItem>
-                        {loopEnum(MealTypes)}
-                    </Select>
-                </FormControl>
-                <FormControl sx={{ m: 1, minWidth: 130 }}>
-                    <InputLabel id="Diet">Diet</InputLabel>
-                    <Select
-                        labelId="Diet"
-                        id="Diet"
-                        value={argument.Diet}
-                        label="Diet"
-                        onChange={handleChange}
-                        MenuProps={{
-                            PaperProps: {
-                                style: {
-                                    maxHeight: 200,
-                                },
-                            }
-                        }}
-                    >
-                        <MenuItem value="">
-                            <em>None</em>
-                        </MenuItem>
-                        {loopEnum(Diet)}
-                    </Select>
-                </FormControl>
-                <FormControl sx={{ m: 1, minWidth: 130 }}>
-                    <InputLabel id="CuisineType">Meal types</InputLabel>
-                    <Select
-                        labelId="CuisineType"
-                        id="CuisineType"
-                        value={argument.CuisineType}
-                        label="CuisineType"
-                        onChange={handleChange}
-                        MenuProps={{
-                            PaperProps: {
-                                style: {
-                                    maxHeight: 200,
-                                },
-                            }
-                        }}
-                    >
-                        <MenuItem value="">
-                            <em>None</em>
-                        </MenuItem>
-                        {loopEnum(CuisineType)}
-                    </Select>
-                </FormControl>
-                <SearchBarFilterClearAll onClick={() => setArgument({ MealTypes: "", Diet: "", CuisineType: "" })}>
-                    Clear all
-                </SearchBarFilterClearAll>
-            </SearchBarFilterHandler>
         </SearchBarHandler >
     )
 }
@@ -142,41 +98,57 @@ background-color: transparent;
 font-size: 16px;
 font-weight: 600;
 margin-left: auto;
+transition: color .5s ease;
+min-width: 70px;
+&:hover {
+    color: #d07c00;
+}
 `
 
 const SearchBarFilterHandler = styled.label`
 display:flex;
-padding: 10px;
 align-items: center;
+flex: 1;
+@media screen and (max-width: 950px) {
+    width: 100%;
+    flex-wrap: wrap;
+}
 `
 
 const SearchBarButtonImg = styled.img`
-width: 24px;
-height: 24px;
-margin-right: 10px;
-margin-bottom: 10px;
+width: 16px;
+height: 16px;
 `
 
 const SearchBarButton = styled.button`
-background-color: transparent;
-font - size: 2.4rem;
-line - height: 2.4rem;
-vertical - align: middle;
-transition: filter .5s ease;
-&:hover {
-    filter: hue-rotate(150deg);
-}
+
+background-color: #ff9600;
+height: 40px;
+width: 40px;
+display:flex;
+justify-content: center;
+align-items:center;
+border-radius: 4px;
+    &:hover {
+        background-color: #d07c00;
+    }
+transition: background-color .5s ease;
 `
 
 const SearchBarInputHandler = styled.div`
 position: relative;
 display: flex;
 flex-direction: row;
+align-items: center;
 width: 100%;
 margin: 0 auto;
-border-radius: 2px;
-padding: 10px;
-padding-top: 20px;`
+border-radius: 10px;
+box-shadow: 0 2px 4px rgb(0 0 0 / 1%), 0 2px 4px rgb(0 0 0 / 5%);
+padding: 20px;
+@media screen and (max-width: 950px) {
+    flex-direction: column;
+}
+`
 
 const SearchBarHandler = styled.div`
 background-color: white;

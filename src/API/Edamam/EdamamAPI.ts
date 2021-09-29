@@ -40,7 +40,9 @@ class EdamamAPI {
   }
 
   async getNextPageOfRecipes(url: string) {
-    return axios.get(url).then((res: AxiosResponse<EdamamResponse>) => res.data);
+    return axios
+      .get(url)
+      .then((res: AxiosResponse<EdamamResponse>) => res.data);
   }
 }
 
