@@ -18,10 +18,6 @@
     color: #ff9600 !important;
 }
 
-.Mui-focused {
-    color: #ff9600 !important;
-}
-
 .Mui-selected, .Mui-selected:hover {
     background-color: rgb(255 181 0 / 20%) !important;
 }
