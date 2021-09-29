@@ -22,7 +22,7 @@
     background-color: rgb(255 181 0 / 20%) !important;
 }
 
-.Mui-focused {
+.Mui-focused, .css-1bn53lx.Mui-focused .MuiOutlinedInput-notchedOutline, .css-1v4ccyo.Mui-focused .MuiOutlinedInput-notchedOutline {
     border-color: #ff9600 !important;
 }
 
