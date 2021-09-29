@@ -6,7 +6,7 @@ export const Header: FunctionComponent = () => {
     return (
         <HeaderWrapper>
             <HeaderImg src={recipeImg} />
-            <HeaderTitle>Recipes Ideas</HeaderTitle>
+            <HeaderTitle>Recipe Ideas</HeaderTitle>
         </HeaderWrapper>
     )
 }
