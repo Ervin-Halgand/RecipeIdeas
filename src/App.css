@@ -1,7 +1,6 @@
 body {
   color: rgb(69, 60, 99);
   background: rgb(249, 249, 251);
-  font-family: 'Baloo 2', cursive;
   min-height: 100vh;
 }
 
@@ -10,15 +9,14 @@ body {
   height: 13px;
   }
   ::-webkit-scrollbar-thumb{
-  background: linear-gradient(to top,#FFC837,#FF8008);
-  border-radius: 1px;
+    background: #FB9400;
+    border-radius: 10px;
   }
   ::-webkit-scrollbar-thumb:hover{
-  background: linear-gradient(to top,#FFC837,#FF8008);
+    background: #be6f00;
   }
   ::-webkit-scrollbar-track{
   background: #FFE7C4;
-  box-shadow: inset 0px 0px 0px 0px #F0F0F0;
   }
 
 .app {
@@ -89,6 +87,7 @@ button:hover {
 }
 
 * {
+  font-family: 'Baloo 2', cursive !important;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
