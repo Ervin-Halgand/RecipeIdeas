@@ -18,16 +18,8 @@ export const SearchBar: FunctionComponent<any> = ({ fetchWithArgs }) => {
     const [inputError, setInputError] = useState<string>("")
     const [argument, setArgument] = useState({ MealTypes: "", Diet: "", CuisineType: "" });
 
-    const handleChange = (event: any) => {
-        for (let meal in MealTypes)
-            if (meal === event.target.value)
-                setArgument({ ...argument, MealTypes: event.target.value })
-        for (let cuisine in CuisineType)
-            if (cuisine === event.target.value.replaceAll(' ', ''))
-                setArgument({ ...argument, CuisineType: event.target.value })
-        for (let type in Diet)
-            if (type.toLowerCase() === event.target.value.replaceAll('-', ''))
-                setArgument({ ...argument, Diet: event.target.value })
+    const handleChange = (event: any, argumentType: any) => {
+        setArgument({ ...argument, [argumentType]: event.target.value })
     };
 
     const validate = (): void => {
@@ -73,7 +65,7 @@ export const SearchBar: FunctionComponent<any> = ({ fetchWithArgs }) => {
                                     id={item.id}
                                     value={item.value}
                                     label={item.name}
-                                    onChange={handleChange}
+                                    onChange={(e) => handleChange(e, item.id)}
                                     MenuProps={{ PaperProps: { style: { maxHeight: 200 } } }} >
                                     <MenuItem value="">
                                         <em>None</em>
