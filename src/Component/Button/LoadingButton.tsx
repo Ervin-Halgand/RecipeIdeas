@@ -54,6 +54,10 @@ border-radius: 10px;
 color: white;
 font-weight: 500;
 font-size: 15px;
+transition: background-color .5s ease;
+&:hover {
+  background-color: #d07c00;
+}
 `
 
 export const SeeMoreHandler = styled.div`

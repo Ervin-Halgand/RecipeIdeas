@@ -14,20 +14,20 @@ export const CardNutritient: FunctionComponent<IRecipeProps> = ({ recipe }: IRec
             </CardWrapperIngredientsTitle>
             <CardWrapperNutritient>
                 <CardWrapperNutritientItem>
-                    <CardWrapperNutritientItemImg src={transFatImg} />
+                    <CardWrapperNutritientItemImg src={transFatImg} alt="fat"/>
                     <CardWrapperNutritientItemDesc>
                         {Math.round(recipe.totalNutrients.FAT.quantity)} {recipe.totalNutrients.FAT.unit}
                     </CardWrapperNutritientItemDesc>
 
                 </CardWrapperNutritientItem>
                 <CardWrapperNutritientItem>
-                    <CardWrapperNutritientItemImg src={starchImg} />
+                    <CardWrapperNutritientItemImg src={starchImg} alt="carbs" />
                     <CardWrapperNutritientItemDesc>
                         {Math.round(recipe.totalNutrients.CHOCDF.quantity)} {recipe.totalNutrients.CHOCDF.unit}
                     </CardWrapperNutritientItemDesc>
                 </CardWrapperNutritientItem>
                 <CardWrapperNutritientItem>
-                    <CardWrapperNutritientItemImg src={proteinesImg} />
+                    <CardWrapperNutritientItemImg src={proteinesImg} alt="protein" />
                     <CardWrapperNutritientItemDesc>
                         {Math.round(recipe.totalNutrients.PROCNT.quantity)} {recipe.totalNutrients.PROCNT.unit}
                     </CardWrapperNutritientItemDesc>

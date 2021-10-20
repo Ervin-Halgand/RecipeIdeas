@@ -11,7 +11,7 @@ export const CardAction: FunctionComponent<IRecipeProps> = ({ recipe }: IRecipeP
                 <CardWrapperMoreHandlerImg src={playImg} alt="play" />
                 Let's cook</CardWrapperMoreButton></a>
             <CardWrapperMoreTime>
-                <CardWrapperMoreImg src={alarmClockImg} /> {recipe.totalTime} mins
+                <CardWrapperMoreImg src={alarmClockImg} alt="time"/> {recipe.totalTime} mins
             </CardWrapperMoreTime>
         </CardWrapperMoreHandler>
     )
@@ -34,7 +34,7 @@ const CardWrapperMoreTime = styled.div`
 display:flex;
 justify-content: center;
 align-items: center;
-color: #a7a7a7;
+color: #424242;
 `
 
 const CardWrapperMoreButton = styled.button`

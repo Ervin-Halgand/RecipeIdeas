@@ -5,7 +5,7 @@ import recipeImg from "../../Assets/Image/recipe-book.png"
 export const Header: FunctionComponent = () => {
     return (
         <HeaderWrapper>
-            <HeaderImg src={recipeImg} />
+            <HeaderImg src={recipeImg} width="64" height="64" alt="logo" />
             <HeaderTitle>Recipe Ideas</HeaderTitle>
         </HeaderWrapper>
     )

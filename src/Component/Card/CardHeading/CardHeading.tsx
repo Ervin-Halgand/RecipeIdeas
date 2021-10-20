@@ -9,7 +9,7 @@ export interface IRecipeProps {
 export const CardHeading: FunctionComponent<IRecipeProps> = ({ recipe }: IRecipeProps) => {
     return (
         <CardWrapperHeader>
-            <CardWrapperHeaderImg src={recipe.image} alt={recipe.label} />
+            <CardWrapperHeaderImg width="104" height="104" src={recipe.image} alt={recipe.label} />
             <CardWrapperHeaderDescHandler>
                 <CardWrapperHeaderTitle>
                     {recipe.label}
@@ -31,8 +31,6 @@ margin-bottom: 10px;
 `
 
 const CardWrapperHeaderImg = styled.img`
-width: 104px;
-height: 104px;
 object-fit: cover;
 border-radius: 50%;
 margin-right: 10px;
@@ -53,6 +51,6 @@ font-weight: 700;
 `
 
 const CardWrapperHeaderCalories = styled.div`
-color: #a7a7a7;
+color: #424242;
 margin-top: auto;
 `
