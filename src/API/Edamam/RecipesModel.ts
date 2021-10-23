@@ -1,3 +1,10 @@
+export interface EdamamError {
+  status: string;
+  message?: string;
+  errorCode?: string;
+  params?: [string];
+}
+
 export interface EdamamResponse {
   count: DoubleRange;
   hits: { recipe: Recipe; _links: Link }[];
